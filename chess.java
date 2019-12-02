@@ -84,15 +84,37 @@ class chess{
 
         
     }
+    void check(int jumps,int x, int y, String d){
+        int ox = x;
+        int oy = y;
+        if(d.equals("F")){
+            while(jumps!=0){
+                y--;
+                jumps--;
+                
+            }
+        }
+        else if(d.equals("B")){
+            while(jumps!=0){
+                y++;
+                jumps--;
+            }
+        }
+    }
     public void move_piece(String s){
         if(validatePiece(s.substring(0,2))==false){
             System.out.println("Illegal Piece");
             return;
         }
         String piece = s.substring(0,2);
+        String move = s.subtring(3);
         int fp = findPiece(piece);
         int p_x = fp%5;
         int p_y = fp/5;
-        
+        if(piece.charAt(i)=='P'){
+            if(turn == 1){
+                if(move=='F')
+            }
+        }
     }
 }

@@ -37,6 +37,19 @@ class chess{
         }
         return true;
     }
+    int findPiece(String p){
+        int flag = 0;
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                if(board[i][j].indexOf(p)!=-1){
+                    flag = 1;
+                    return (i*5)+j;
+                }
+            }
+        }
+        if(flag==0)
+            return -1;
+    }
     public static void main(String args[]){
         init_board();
         Scanner sc=new Scanner(System.in);
@@ -69,13 +82,7 @@ class chess{
         }
         disp_board();
 
-        turn = 1;
-        System.out.println("Player 1:");
-        input = sc.next();
         
-        if(validateMove(input)){
-
-        }
     }
     public void move_piece(String s){
         if(validatePiece(s.substring(0,2))==false){
@@ -83,6 +90,9 @@ class chess{
             return;
         }
         String piece = s.substring(0,2);
+        int fp = findPiece(piece);
+        int p_x = fp%5;
+        int p_y = fp/5;
         
     }
 }

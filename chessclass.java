@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Board{
     Piece board[][];
     ArrayList <Piece> pieces = new ArrayList<Piece>();
@@ -7,14 +9,19 @@ class Board{
         board = new Piece[max_size][max_size];
         for(int i=0;i<max_size;i++){
             for(int j=0;j<max_size;j++){
-                board[i][j] = new EmptyPiece();
+                board[i][j] = null;
             }
         }    
     }
     void disp_board(){
         for(int i=0;i<max_size;i++){
             for(int j=0;j<max_size;j++){
-                board[i][j].display();
+                if(board[i][j]==null){
+                    System.out.print("-");
+                }
+                else{
+                    board[i][j].display();
+                }
                 System.out.print(" ");
             }
             System.out.println();
@@ -38,7 +45,7 @@ class Board{
             pieces.add(hero3);
         }
     }
-
+    
 }
 class Piece{
     int x,y;
@@ -59,15 +66,15 @@ class Piece{
     }
 }
 class Pawn extends Piece{
-    eats = true;
-    Pawn(String n){
-        name = n;
-    }
     Pawn(String n, int x, int y){
+        super(n,x,y);
+        eats = true;
+    }
+    /*Pawn(String n, int x, int y){
         this.name = name;
         this.x = x;
         this.y = y;
-    }
+    }*/
     void moveF(int turn){
         nx = x; 
         ny = y;
@@ -114,17 +121,17 @@ class Pawn extends Piece{
     }
     
 }
-class EmptyPiece extends Piece{
-    EmptyPiece(){
+/*class EmptyPiece extends Piece{
+    EmptyPiece(String n, int x, int y){
         name = "-";
     }
-}
+}*/
 class Hero1 extends Piece{
     int jumps_x = 2;
     int jumps_y = 2;
-    eats = true;
-    Hero1(String n){
-        name = n;
+    Hero1(String n, int x, int y){
+        super(n,x,y);
+        eats = true;
     }
 void moveF(int turn){
         nx = x; 
@@ -171,12 +178,12 @@ void moveF(int turn){
         move_impending = true;
     }
 }
-class Hero2 extends Piece{
+class Hero3 extends Piece{
     int jumps_x = 2;
     int jumps_y = 2;
-    eats = true;
-    Hero2(String n){
-        name = n;
+    Hero3(String n, int x, int y){
+        super(n,x,y);
+        eats = false;
     }
     void moveFL(int turn){
         nx = x;
@@ -239,18 +246,43 @@ class Hero2 extends Piece{
         }
         else if(turn == 2){
             ny--;
-            nx-=2
+            nx-=2;
         }
     }
 }
-class Hero3 extends Piece{
-    //eats = false;
-    Hero3(String n, int x, int y){
+class Hero2 extends Piece{
+    Hero2(String n, int x, int y){
         super(n,x,y);
-        eats = false;
+        eats = true;
     }
 }
 class chessclass{
+    static int turn;
+    String players[]={"A","B"};
+    static String getPieceType(String n){
+        if(n.charAt(0)=='P'||n.charAt(0)=='p')
+            return "Pawn";
+        else if(n.charAt(0)=='H' || n.charAt(0)=='h'){
+            if(n.equals("H1"))
+                return "Hero1";
+            else if(n.equals("H2"))
+                return "Hero2";
+            else if(n.equals("H3"))
+                return "Hero3";
+        }
+    }
+    static void startgame(Board b){
+        Scanner sc = new Scanner(System.in);
+        String input;
+        String in[];
+        for(int i=1;i<=2;i++){
+            turn = i;
+            System.out.println("Player "+i+" Start");
+            input = sc.nextLine();
+            in = input.split(",");
+            addPiece
+        }
+    }
     public static void main(String args[]){
         Board b=new Board();
         b.init_board(5);

@@ -254,6 +254,7 @@ class Game{
             }
             if(piece.moving == false)
                 continue;
+                
             piece.hasMoved();
             board.show();
             checkVictory();

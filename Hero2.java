@@ -10,7 +10,7 @@ class Hero2 extends Piece{
             return false;    
     }
     String[] getSteps(String move){
-        String steps[]=new steps[2];
+        String steps[]=new String[2];
         steps[0]=move;
         steps[1]=move;
         return steps;

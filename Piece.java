@@ -71,6 +71,20 @@ abstract class Piece{
         initialPoint.y = piecePoint.getY();
         nextPoint = new Point();
     }
-    boolean validateMove();
-    String[] getSteps();
+    abstract boolean validateMove(String str);
+    abstract String[] getSteps(String str);
+    void kill(){
+        this.isKilled = true;
+        this.piecePoint = null;
+        this.nextPoint = null;
+        this.initialPoint = null;
+        this.moving = false;
+    }
+    void hasMoved(){
+        if(moving){
+            moving = false;
+            piecePoint.x = nextPoint.x;
+            piecePoint.y = nextPoint.y;
+        }
+    }
 }

@@ -10,7 +10,7 @@ class Pawn extends Piece{
             return false;    
     }
     String[] getSteps(String move){
-        String steps[]=new steps[1];
+        String steps[]=new String[1];
         steps[0]=move;
         return steps;
     }

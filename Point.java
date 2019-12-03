@@ -26,4 +26,7 @@ class Point{
         else
             return false;
     }
+    void show(){
+        System.out.println("("+x+","+y+")");
+    }
 }
